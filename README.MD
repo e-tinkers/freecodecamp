@@ -4,13 +4,13 @@ This repository contains my version of coding solutions of [freeCodeCamp](https:
 
 ### Projects
 
-- [Responsive Web Design](https://github.com/e-tinkers/freecodecamp/responsive-web-design)
+- [Responsive Web Design](https://github.com/e-tinkers/freecodecamp/tree/master/responsive-web-design)
     - Build a Tribute Page
     - Build a Survey Form
     - Build a Product Landing Page
     - Build a Technical Documentation Page
     - Build a Personal Portfolio Webpage
-- [JavaScript Algorithms and Data  Structures](https://github.com/e-tinkers/freecodecamp/javascript-algorithms-and-data-structures)
+- [JavaScript Algorithms and Data  Structures](https://github.com/e-tinkers/freecodecamp/tree/master/javascript-algorithms-and-data-structures)
     - Palindrome Checker
     - Roman Numeral Converter
     - Caesars Cipher
