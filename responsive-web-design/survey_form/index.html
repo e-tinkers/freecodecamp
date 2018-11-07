@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Responsive Web Design Projects - Build a Survey Form</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body class="survey-form">
+    <h1 id="title">Survey Form</h1>
+    <p id="description">Let us know how we can improve Bike Tour?</p>
+    <form id="survey-form" action="index.html" method="post">
+      <label id="name-label" for="name">Name *</label>
+      <input type="text" id="name" name="name" placeholder="Enter your name" required>
+      <label id="email-label" for="email">Email *</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required>
+      <label id="number-label" for="number">Number of Participants</label>
+      <input type="number" id="number" name="participants" placeholder="Number of Participants" min="1" max="30">
+      <label for="source-of-referral">How did you find us?</label>
+      <select id="dropdown" name="source-of-referral" class="dropdown">
+        <option value="default">Select an option</option>
+        <option value="bikenews">bikenews.com</option>
+        <option value="search">Gogole search</option>
+        <option value="facebook">Facebook</option>
+        <option value="word-of-mouth">Word of Mouth</option>
+        <option value="other">Other</option>
+      </select>
+      <fieldset>
+        <p>How would you rate our overall Bike Tour service?</p>
+        <div class="user-rating">
+          <input type="radio" id="very-dissatisfy" name="radio-buttons" value="1">
+          <label for="very-unlikely">Very Dissatisfy</label>
+        </div>
+        <div class="user-rating">
+          <input type="radio" id="dissatisfy" name="radio-buttons" value="2">
+          <label for="unlikely">Dissatisfy</label>
+        </div>
+        <div class="user-rating">
+          <input type="radio" id="neutral" name="radio-buttons" value="3">
+          <label for="neutral">Neutral</label>
+        </div>
+        <div class="user-rating">
+          <input type="radio" id="satisfy" name="radio-buttons" value="4">
+          <label for="likely">Satisfy</label>
+        </div>
+        <div class="user-rating">
+          <input type="radio" id="very-satisfy" name="radio-buttons" value="5">
+          <label for="very-satisfy">Very Satisfy</label>
+        </div>
+      </fieldset>
+      <label>What are the areas that you would like to see improvement</label>
+      <div>
+        <div class="checkboxes">
+          <input type="checkbox" id="booking" value="tour booking">
+          <label for="booking">Tour booking</label>
+        </div>
+        <div class="checkboxes">
+          <input type="checkbox" id="Bike rental" value="bike rental">
+          <label for="bike rental">Bike rental</label>
+        </div>
+        <div class="checkboxes">
+          <input type="checkbox" id="support vehicle" value="support vihicle">
+          <label for="support vehicle">Support Vehicle</label>
+        </div>
+        <div class="checkboxes">
+          <input type="checkbox" id="hotel arrangements" value="hotel arrangements">
+          <label for="hotel arrangements">Hotel arrangements</label>
+        </div>
+        <div class="checkboxes">
+          <input type="checkbox" id="longer distance" name="longer distance" value="longer distance">
+          <label for="longer distance">Longer distance</label>
+        </div>
+        <div class="checkboxes">
+          <input type="checkbox" id="shorter distance" name="shorter distance" value="shorter ditance">
+          <label for="shorter distance">Shorter distance</label>
+        </div>
+        <div class="checkboxes">
+          <input type="checkbox" id="more rest stops" name="more rest stops" value="more rest stops">
+          <label for="id">More rest stops</label>
+        </div>
+      </div>
+      <div class="text-area">
+        <label for="comments">Any further suggestions/comments?</label>
+        <textarea id="comments" name="comments"></textarea>
+      </div>
+      <button type="submit" id="submit" class="button">Submit</button>
+    </form>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+
+  </body>
+</html>
