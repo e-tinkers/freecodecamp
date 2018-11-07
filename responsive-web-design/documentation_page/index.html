@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Responsive Web Design Projects - Build a Technical Documentation Page</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body class="container">
+    <nav id="navbar" class="nav-grid">
+      <header>
+        <h1>RPi.GPIO User Guide</h1>
+      </header>
+      <ul>
+        <li><a href="#Introduction" class="nav-link" rel="internal">Introduction</a></li>
+        <li><a href="#Installation" class="nav-link" rel="internal">Installation</a></li>
+        <li><a href="#Quick_Start" class="nav-link" rel="internal">Quick Start</a></li>
+        <li><a href="#Input" class="nav-link" rel="internal">Input</a></li>
+        <li><a href="#Output" class="nav-link" rel="internal">Output</a></li>
+        <li><a href="#PWM" class="nav-link" rel="internal">PWM</a></li>
+        <li><a href="#GPIO_References" class="nav-link" rel="internal">GPIO References</a></li>
+      </ul>
+    </nav>
+    <main id="main-doc" class="main-grid">
+      <section id="Introduction" class="main-section">
+        <header><h2>Introduction</h2></header>
+        <article>
+          <p>RPi.GPIO is a python package to control the GPIO on a Raspberry Pi.</p>
+          <p>Note that this module is unsuitable for real-time or timing critical applications. This is because you can not predict when Python will be busy garbage collecting. It also runs under the Linux kernel which is not suitable for real time applications - it is multitasking O/S and another process may be given priority over the CPU, causing jitter in your program. If you are after true real-time performance and predictability, buy yourself an <a href="https://www.arduino.cc" target="_blank" rel="nofollow noopenner noreferrer">Arduino</a>!</p>
+          <p>Note that the current release does not support SPI, I2C, hardware PWM or serial functionality on the RPi yet. This is planned for the near future - watch this space! One-wire functionality is also planned.</p>
+          <p>Although hardware PWM is not available yet, software PWM is available to use on all channels.</p>
+        </article>
+      </section>
+      <section id="Installation" class="main-section">
+        <header><h2>Installation</h2></header>
+        <article>
+          <h3>Raspbian</h3>
+          <p>The RPi.GPIO module is installed by default in Raspbian. To make sure that it is at the latest version:</p>
+          <code>
+sudo apt-get update
+sudo apt-get install python-rpi.gpio python3-rpi.gpio
+          </code>
+          <h3>Other Distributions</h3>
+          <p>It is recommended that you install RPi.GPIO using the pip utility as superuser (root):</p>
+          <code>sudo pip install RPi.GPIO</code>
+        </article>
+      </section>
+      <section id="Quick_Start" class="main-section">
+        <header><h2>Quick Start</h2></header>
+        <article>
+          <h3>Importing the module</h3>
+          <p>To import the RPi.GPIO module:</p>
+          <code>import RPi.GPIO as GPIO</code>
+          <p>By doing it this way, you can refer to it as just GPIO through the rest of your script.  To import the module and check to see if it is successful:</p>
+          <code>
+try:
+    import RPi.GPIO as GPIO
+except RuntimeError:
+    print("Error importing RPi.GPIO!  This is probably because you need superuser privileges.  You can achieve this by using 'sudo' to run your script")
+          </code>
+          <h3>Pin numbering</h3>
+          <p>There are two ways of numbering the IO pins on a Raspberry Pi within RPi.GPIO. The first is using the BOARD numbering system. This refers to the pin numbers on the P1 header of the Raspberry Pi board. The advantage of using this numbering system is that your hardware will always work, regardless of the board revision of the RPi. You will not need to rewire your connector or change your code.</p>
+          <p>The second numbering system is the BCM numbers. This is a lower level way of working - it refers to the channel numbers on the Broadcom SOC. You have to always work with a diagram of which channel number goes to which pin on the RPi board. Your script could break between revisions of Raspberry Pi boards.</p>
+          <p>To specify which you are using using (mandatory):</p>
+          <code>GPIO.setmode(GPIO.BOARD)</code>
+          <p>or</p>
+          <code>GPIO.setmode(GPIO.BCM)</code>
+          <p>To detect which pin numbering system has been set (for example, by another Python module):</p>
+          <code>mode = GPIO.getmode()</code>
+          <h3>Warnings</h3>
+          <p>It is possible that you have more than one script/circuit on the GPIO of your Raspberry Pi. As a result of this, if RPi.GPIO detects that a pin has been configured to something other than the default (input), you get a warning when you try to configure a script. To disable these warnings:</p>
+          <code>GPIO.setwarnings(False)</code>
+          <h3>Setup up a channel</h3>
+          <p>You need to set up every channel you are using as an input or an output. To configure a channel as an input:</p>
+          <code>GPIO.setup(channel, GPIO.IN)</code>
+          <p>where channel is the channel number based on the numbering system you have specified (BOARD or BCM)).</p>
+          <p>To set up a channel as an output:</p>
+          <code>GPIO.setup(channel, GPIO.OUT)</code>
+          <p>where channel is the channel number based on the numbering system you have specified (BOARD or BCM).</p>
+          <p>You can also specify an initial value for your output channel:</p>
+          <code>GPIO.setup(channel, GPIO.OUT, initial=GPIO.HIGH)</code>
+          <h3>Setup more than one channel</h3>
+          <p>You can set up more than one channel per call (release 0.5.8 onwards). For example:</p>
+          <code>
+chan_list = [11,12]    # add as many channels as you want!
+                       # you can tuples instead i.e.:
+                       #   chan_list = (11,12)
+GPIO.setup(chan_list, GPIO.OUT)
+          </code>
+          <h3>Input</h3>
+          <p>To read the value of a GPIO pin:</p>
+          <code>GPIO.input(channel)</code>
+          <p>where channel is the channel number based on the numbering system you have specified (BOARD or BCM).  This will return either 0 / GPIO.LOW / False or 1 / GPIO.HIGH / True.</p>
+          <h3>Output</h3>
+          <p>To set the output state of a GPIO pin:</p>
+          <code>GPIO.output(channel, state)</code>
+          <p>where channel is the channel number based on the numbering system you have specified (BOARD or BCM).  State can be 0 / GPIO.LOW / False or 1 / GPIO.HIGH / True.</p>
+          <h3>Output to several channels</h3>
+          <p>You can output to many channels in the same call (release 0.5.8 onwards). For example:</p>
+          <code>
+chan_list = [11,12]                             # also works with tuples
+GPIO.output(chan_list, GPIO.LOW)                # sets all to GPIO.LOW
+GPIO.output(chan_list, (GPIO.HIGH, GPIO.LOW))   # sets first HIGH and second LOW
+          </code>
+          <h3>Cleanup</h3>
+          <p>At the end any program, it is good practice to clean up any resources you might have used. This is no different with RPi.GPIO. By returning all channels you have used back to inputs with no pull up/down, you can avoid accidental damage to your RPi by shorting out the pins. Note that this will only clean up GPIO channels that your script has used. Note that GPIO.cleanup() also clears the pin numbering system in use.</p>
+          <p>To clean up at the end of your script:</p>
+          <code>GPIO.cleanup()</code>
+          <p>It is possible that don't want to clean up every channel leaving some set up when your program exits. You can clean up individual channels, a list or a tuple of channels:</p>
+          <code>
+GPIO.cleanup(channel)
+GPIO.cleanup( (channel1, channel2) )
+GPIO.cleanup( [channel1, channel2] )
+          </code>
+          <h3>RPi Board Information and RPi.GPIO version</h3>
+          <p>To discover information about your RPi:</p>
+          <code>GPIO.RPI_INFO</code>
+          <p>To discover the Raspberry Pi board revision:</p>
+          <code>GPIO.RPI_INFO['P1_REVISION']</code>
+          <p><strong>* GPIO.RPI_REVISION is deprecated</strong></p>
+          <p>To discover the version of RPi.GPIO:</p>
+          <code>GPIO.VERSION</code>
+        </article>
+      </section>
+      <section id="Input" class="main-section">
+        <header><h2>Input</h2></header>
+        <article>
+          <p>There are several ways of getting GPIO input into your program. The first and simplest way is to check the input value at a point in time. This is known as 'polling' and can potentially miss an input if your program reads the value at the wrong time. Polling is performed in loops and can potentially be processor intensive. The other way of responding to a GPIO input is using 'interrupts' (edge detection). An edge is the name of a transition from HIGH to LOW (falling edge) or LOW to HIGH (rising edge).</p>
+          <h3>Pull up / Pull down resistors</h3>
+          <p>If you do not have the input pin connected to anything, it will 'float'. In other words, the value that is read in is undefined because it is not connected to anything until you press a button or switch. It will probably change value a lot as a result of receiving mains interference.</p>
+          <p>To get round this, we use a pull up or a pull down resistor. In this way, the default value of the input can be set. It is possible to have pull up/down resistors in hardware and using software. In hardware, a 10K resistor between the input channel and 3.3V (pull-up) or 0V (pull-down) is commonly used. The RPi.GPIO module allows you to configure the Broadcom SOC to do this in software:</p>
+          <code>GPIO.setup(channel, GPIO.IN, pull_up_down=GPIO.PUD_UP)</code>
+          <p>or</p>
+          <code>GPIO.setup(channel, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)</code>
+          <p>where channel is the channel number based on the numbering system you have specified - BOARD or BCM.</p>
+          <h3>Testing inputs (polling)</h3>
+          <p>You can take a snapshot of an input at a moment in time:</p>
+          <code>
+if GPIO.input(channel):
+    print('Input was HIGH')
+else:
+    print('Input was LOW')
+          </code>
+          <p>To wait for a button press by polling in a loop:</p>
+          <code>
+while GPIO.input(channel) == GPIO.LOW:
+    time.sleep(0.01)  # wait 10 ms to give CPU chance to do other things
+          </code>
+          <p>this assumes that pressing the button changes the input from LOW to HIGH.</p>
+          <h3>Interrupts and Edge detection</h3>
+          <p>An edge is the change in state of an electrical signal from LOW to HIGH (rising edge) or from HIGH to LOW (falling edge). Quite often, we are more concerned by a change in state of an input than it's value. This change in state is an event.</p>
+          <p>To avoid missing a button press while your program is busy doing something else, there are two ways to get round this:</p>
+          <ul>
+            <li>the wait_for_edge() function</li>
+            <li>the event_detected() function</li>
+            <li>a threaded callback function that is run when an edge is detected</li>
+          </ul>
+          <h3>wait_for_edge() function</h3>
+          <p>The wait_for_edge() function is designed to block execution of your program until an edge is detected. In other words, the example above that waits for a button press could be rewritten as:</p>
+          <code>GPIO.wait_for_edge(channel, GPIO.RISING)</code>
+          <p>Note that you can detect edges of type GPIO.RISING, GPIO.FALLING or GPIO.BOTH. The advantage of doing it this way is that it uses a negligible amount of CPU, so there is plenty left for other tasks.</p>
+          <p>If you only want to wait for a certain length of time, you can use the timeout parameter:</p>
+          <code>
+# wait for up to 5 seconds for a rising edge (timeout is in milliseconds)
+channel = GPIO.wait_for_edge(channel, GPIO_RISING, timeout=5000)
+if channel is None:
+    print('Timeout occurred')
+else:
+    print('Edge detected on channel', channel)
+          </code>
+          <h3>event_detected() function</h3>
+          <p>The event_detected() function is designed to be used in a loop with other things, but unlike polling it is not going to miss the change in state of an input while the CPU is busy working on other things. This could be useful when using something like Pygame or PyQt where there is a main loop listening and responding to GUI events in a timely basis.</p>
+          <code>
+GPIO.add_event_detect(channel, GPIO.RISING)  # add rising edge detection on a channel
+do_something()
+if GPIO.event_detected(channel):
+    print('Button pressed')
+  </code>
+          <p>Note that you can detect events for GPIO.RISING, GPIO.FALLING or GPIO.BOTH.</p>
+          <h3>Threaded callbacks</h3>
+          <p>RPi.GPIO runs a second thread for callback functions. This means that callback functions can be run at the same time as your main program, in immediate response to an edge. For example:</p>
+          <code>
+def my_callback(channel):
+    print('This is a edge event callback function!')
+    print('Edge detected on channel %s'%channel)
+    print('This is run in a different thread to your main program')
+    # add rising edge detection on a channel
+    GPIO.add_event_detect(channel, GPIO.RISING, callback=my_callback)
+
+    ...the rest of your program...
+          </code>
+          <p>If you wanted more than one callback function:</p>
+          <code>
+def my_callback_one(channel):
+    print('Callback one')
+
+def my_callback_two(channel):
+    print('Callback two')
+
+GPIO.add_event_detect(channel, GPIO.RISING)
+GPIO.add_event_callback(channel, my_callback_one)
+GPIO.add_event_callback(channel, my_callback_two)
+          </code>
+          <p>Note that in this case, the callback functions are run sequentially, not concurrently. This is because there is only one thread used for callbacks, in which every callback is run, in the order in which they have been defined.</p>
+          <h3>Switch debounce</h3>
+          <p>You may notice that the callbacks are called more than once for each button press. This is as a result of what is known as 'switch bounce'. There are two ways of dealing with switch bounce:</p>
+          <ul>
+            <li>add a 0.1uF capacitor across your switch.</li>
+            <li>software debouncing.</li>
+            <li>a combination of both.</li>
+          </ul>
+          <p>To debounce using software, add the bouncetime= parameter to a function where you specify a callback function. Bouncetime should be specified in milliseconds. For example:</p>
+          <code>
+# add rising edge detection on a channel, ignoring further edges for 200ms for switch bounce handling
+GPIO.add_event_detect(channel, GPIO.RISING, callback=my_callback, bouncetime=200)
+          </code>
+          <p>or</p>
+          <code>GPIO.add_event_callback(channel, my_callback, bouncetime=200)</code>
+          <h3>Remove event detection</h3>
+          <p>If for some reason, your program no longer wishes to detect edge events, it is possible to stop them:</p>
+          <code>GPIO.remove_event_detect(channel)</code>
+        </article>
+      </section>
+      <section id="Output" class="main-section">
+        <header><h2>Output</h2></header>
+        <article>
+          <p>An output channel can be setup to High or Low by setting the GPIO.output() parameter to either GPIO.HIGH or GPIO.LOW:</p>
+<code>GPIO.output(12, GPIO.HIGH)</code>
+<p>or</p>
+<code>GPIO.output(12, GPIO.LOW)</code>
+<p>GPIO.HIGH is equivalent to integer 1 or boolean True.</p>
+<h3>Multiple outputs</h3>
+<p>To output to several channels at the same time with same value or different value:</p>
+        <code>
+chan_list = (11,12)
+GPIO.output(chan_list, GPIO.LOW) # all LOW
+GPIO.output(chan_list, (GPIO.HIGH, GPIO.LOW))  #each channel with different value
+        </code>
+<p>You could directly passing the reading from an GPIO.input() function as the parameter to GPIO.output() function. In the example below, the inverse value of the reading from a reading is passing into the output funciton directly:</p>
+<code>GPIO.output(12, not GPIO.input(12))</code>
+        </article>
+      </section>
+      <section id="PWM" class="main-section">
+        <header><h2>PWM</h2></header>
+        <article>
+<p>Although hardware PWM is not available yet, software PWM is available to use on all channels. RPi.GPIO provides a PWM class with several associated methods for implemnting PWM with RPi.GPIO.</p>
+<p>To create a PWM instance:</p>
+<code>p = GPIO.PWM(channel, frequency)</code>
+<p>To start PWM:</p>
+<code>p.start(dc)   # where dc is the duty cycle (0.0 <= dc <= 100.0)</code>
+<p>To change the frequency:</p>
+<code>p.ChangeFrequency(freq)   # where freq is the new frequency in Hz</code>
+<p>To change the duty cycle:</p>
+<code>p.ChangeDutyCycle(dc)  # where 0.0 <= dc <= 100.0</code>
+<p>To stop PWM:</p>
+<code>p.stop()</code>
+<p>Note that PWM will also stop if the instance variable 'p' goes out of scope.</p>
+<p>An example to blink an LED once every two seconds:</p>
+        <code>
+import RPi.GPIO as GPIO
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(12, GPIO.OUT)
+
+p = GPIO.PWM(12, 0.5)
+p.start(1)
+input('Press return to stop:')   # use raw_input for Python 2
+p.stop()
+GPIO.cleanup()
+        </code>
+<p>An example to brighten/dim an LED:</p>
+        <code>
+import time
+import RPi.GPIO as GPIO
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(12, GPIO.OUT)
+
+p = GPIO.PWM(12, 50)  # channel=12 frequency=50Hz
+p.start(0)
+try:
+    while 1:
+        for dc in range(0, 101, 5):
+            p.ChangeDutyCycle(dc)
+            time.sleep(0.1)
+        for dc in range(100, -1, -5):
+            p.ChangeDutyCycle(dc)
+            time.sleep(0.1)
+except KeyboardInterrupt:
+    pass
+p.stop()
+GPIO.cleanup()
+        </code>
+        </article>
+      </section>
+      <section id="GPIO_References" class="main-section">
+        <header><h2>GPIO References</h2></header>
+        <article>
+          <p>There are several technical references that may help to you to get further better undstanding of Raspberry Pi GPIO:
+            <ul>
+              <li><a href="https://elinux.org/RPi_Low-level_peripherals" target="_blank" rel="nofollow noreferrer noopenner">RPi Low Level Peripherals</a></li>
+              <li><a href="https://elinux.org/RPi_BCM2835_GPIOs" target="_blank" rel="nofollow noopenner noreferrer">RPi BCM2835 GPIOs</a></li>
+              <li><a href="https://www.raspberrypi.org/wp-content/uploads/2012/02/BCM2835-ARM-Peripherals.pdf" target="_blank" rel="nofollow noopenner noreferrer">BCM2835 ARM Peripherals</a></li>
+            </ul>
+            <br>
+            <hr>
+            <p>This user guide is derived from <a href="https://sourceforge.net/p/raspberry-gpio-python/wiki/Home/" target="_blank" rel="nofollow noopenner noreferrer">RPi.GPIO official documentation</a>.
+        </article>
+      </section>
+    </main>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+  </body>
+</html>
