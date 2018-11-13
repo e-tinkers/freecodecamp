@@ -14,7 +14,7 @@ app.get('/api/whoami', (req,res) => {
     language: req.headers['accept-language'],
     software: req.headers['user-agent']
   };
-  res.send(JSON.stringify(resObj));
+  res.json(resObj);
 });
 
 app.listen(port, () => `Server is running at port ${port}`);
