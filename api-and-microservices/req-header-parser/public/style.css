@@ -1,7 +1,6 @@
 * {
   box-sizing: border-box;
 }
-
 body {
   font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
   margin: 2em auto;
@@ -15,7 +14,6 @@ a, a:visited {
 a:hover {
   text-decoration: underline;
 }
-
 pre {
   background: #eee;
   font-family: consolas,menlo,courier,monospace;
@@ -24,4 +22,8 @@ pre {
   max-width: 100%;
   overflow: auto;
   padding: 1.6em;
+}
+footer {
+  border-top: 1px solid #e1e4e8;
+  text-align: center;
 }

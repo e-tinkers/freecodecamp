@@ -11,3 +11,6 @@
   "software":"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:50.0) Gecko/20100101 Firefox/50.0"}
 </code>
 </pre>
+<footer>
+<p>See <a href="https://henry-req-header-parser.glitch.me/api/whoami">demo</a> here</p>
+</footer>
