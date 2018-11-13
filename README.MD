@@ -25,4 +25,3 @@ This repository contains my version of coding solutions of [freeCodeCamp](https:
     - Exercise Tracker
     - File Metadata Microservice
 - Information Security and Quality Assurance
-- Coding Interview Prep
