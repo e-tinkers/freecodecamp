@@ -11,7 +11,7 @@ app.get('/', function(request, response) {
 app.get('/api/timestamp/:date_string*?', (req,res) => {
   let date = "";
   let dateString = req.params.date_string;
-  
+
   if (dateString === undefined) {    //No dateString provided
       date = new Date();
   } else if (isNaN(dateString*1)){    //Is a timestamp string
