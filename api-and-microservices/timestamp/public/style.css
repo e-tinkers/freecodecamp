@@ -1,0 +1,32 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
+  margin: 2em auto;
+  max-width:750px;
+  padding: 0 20px;
+}
+a, a:visited {
+  text-decoration: none;
+  color: #57ad68;
+}
+a:hover {
+  text-decoration: underline;
+}
+pre {
+  background: #eee;
+  font-family: consolas,menlo,courier,monospace;
+  line-height: 1.6;
+  margin: 12px 12px 20px;
+  max-width: 100%;
+  overflow: auto;
+  padding: 1.6em;
+}
+code {
+  background: #eee;
+}
+footer {
+  border-top: 1px solid #e1e4e8;
+  text-align: center;
+}

@@ -1,0 +1,20 @@
+{
+  "name": "timestamp",
+  "author": "Henry Cheung",
+  "version": "0.0.1",
+  "description": "Microservice that returns a JSON response containing unix timestamp and utc date format based on user's request with a valid time stamp or ISO-8601 date string",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "engines": {
+    "node": "8.x"
+  },
+  "repository": {
+    "url": "https://github.com/e-tinkers/freecodecamp/tree/master/api-and-microservices/timestamp"
+  },
+  "license": "MIT"
+}
