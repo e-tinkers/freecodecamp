@@ -18,6 +18,11 @@ This repository contains my version of coding solutions of [freeCodeCamp](https:
     - Cash Register
 - Front End Libraries
 - Data Visualization
-- API and Microservices
+- [API and Microservices](https://github.com/e-tinkers/freecodecamp/tree/master/api-and-microservices)
+    - Timestamp Microservice
+    - Request Header Parser Microservice
+    - URL Shortener Microservice
+    - Exercise Tracker
+    - File Metadata Microservice
 - Information Security and Quality Assurance
 - Coding Interview Prep
