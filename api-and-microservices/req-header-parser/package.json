@@ -1,0 +1,20 @@
+{
+  "name": "request-header-parser",
+  "author": "Henry Cheung",
+  "version": "0.0.1",
+  "description": "Microservice that provides IP, language and software info of an http request",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.16.3"
+  },
+  "engines": {
+    "node": "8.x"
+  },
+  "repository": {
+    "url": "https://glitch.com/edit/#!/hello-express"
+  },
+  "license": "MIT"
+}
