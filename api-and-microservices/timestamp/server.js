@@ -4,9 +4,7 @@ const port = process.env.PORT || 3000;
 
 app.use(express.static('public'));
 
-app.get('/', function(request, response) {
-  response.sendFile(__dirname + '/views/index.html');
-});
+app.get('/', (req, res) => res.sendFile(__dirname + '/views/index.html'));
 
 app.get('/api/timestamp/:date_string*?', (req,res) => {
   let date = "";

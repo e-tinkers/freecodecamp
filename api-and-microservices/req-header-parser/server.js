@@ -4,17 +4,14 @@ const port = process.env.PORT || 3000;
 
 app.use(express.static('public'));
 
-app.get('/', function(request, response) {
-  response.sendFile(__dirname + '/views/index.html');
-});
+app.get('/', (req, res) => res.sendFile(__dirname + '/views/index.html'));
 
 app.get('/api/whoami', (req,res) => {
-  const resObj = {
+  res.json({
     ipaddress: req.ip,
     language: req.headers['accept-language'],
     software: req.headers['user-agent']
-  };
-  res.json(resObj);
+  });
 });
 
 app.use( (req, res, next) => {
