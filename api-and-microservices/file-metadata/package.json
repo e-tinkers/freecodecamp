@@ -1,0 +1,21 @@
+{
+  "name": "file-metadata-microservice",
+  "author": "Henry Cheung",
+  "version": "0.0.1",
+  "description": "Microservice for sending back upload file name, type and size",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "multer": "^1.4.1"
+  },
+  "engines": {
+    "node": "8.x"
+  },
+  "repository": {
+    "url": "https://glitch.com/edit/#!/hello-express"
+  },
+  "license": "MIT"
+}
