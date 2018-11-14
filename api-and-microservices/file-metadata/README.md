@@ -11,3 +11,4 @@
 <h3>Output:</h3>
 <p>The file name and size of the file in bytes will be displayed as a JSON object at [base_url]/api/upload like this:</p>
 <pre><code>{"name":"example.txt","type":"text/plain","size":1229}</code></pre>
+<p>See <a href="https://henry-file-metadata.glitch.me" target="_blank" rel="nofollow">Live Demo</a></p>
