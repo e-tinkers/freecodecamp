@@ -27,4 +27,9 @@ app.get('/api/timestamp/:date_string*?', (req,res) => {
   }
 });
 
-app.listen(port, () => `Server is running at port ${port}`);
+app.use( (req, res, next) => {
+  res.status(404);
+  res.type('txt').send('Not found');
+});
+
+app.listen(port, () => console.log(`Server is running at port ${port}`));
