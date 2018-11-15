@@ -2,10 +2,6 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(express.static('public'));
-
-app.get('/', (req, res) => res.sendFile(__dirname + '/views/index.html'));
-
 app.get('/api/timestamp/:date_string*?', (req,res) => {
   let date = "";
   let dateString = req.params.date_string;
