@@ -23,7 +23,7 @@ app.get('/api/timestamp/:date_string*?', (req,res) => {
 
 app.use( (req, res, next) => {
   res.status(404);
-  res.type('txt').send('Not found');
+  res.type('txt').send('Invalid endpoint. Use /api/timestamp/:date_string (date_string is optional).');
 });
 
 app.listen(port, () => console.log(`Server is running at port ${port}`));

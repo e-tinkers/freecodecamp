@@ -12,7 +12,7 @@ app.get('/api/whoami', (req,res) => {
 
 app.use( (req, res, next) => {
   res.status(404);
-  res.type('txt').send('Not found');
+  res.type('txt').send('Invalid endpoint. Usage: /api/whoami');
 });
 
 app.listen(port, () => console.log(`Server is running at port ${port}`));

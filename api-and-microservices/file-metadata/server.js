@@ -18,7 +18,7 @@ app.post('/api/upload', (req, res) => {
 
 app.use( (req, res, next) => {
   res.status(404);
-  res.type('txt').send('Not found');
+  res.type('txt').send('404 - Not Found.');
 });
 
 app.listen(port, () => console.log(`Server is running at port ${port}`));
