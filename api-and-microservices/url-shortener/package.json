@@ -17,7 +17,7 @@
     "node": "8.x"
   },
   "repository": {
-    "url": "https://glitch.com/edit/#!/hnry-url-shortener"
+    "url": "https://github.com/e-tinkers/freecodecamp/tree/master/api-and-microservices/url-shortener"
   },
   "license": "MIT"
 }
