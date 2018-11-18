@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>File Metadata Microservice(freeCodeCamp project)</title>
+    <meta name="description" content="When a file is uploaded to the server, the server will return a JSON object with the file name and size of the file in bytes.">
+    <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <main>
+      <h1 id="api-project-url-shortener-microservice">API Project: URL Shortener Microservice</h1>
+      <h2 id="user-story-">User Story:</h2>
+      <ul>
+      <li>I can POST a URL to [project_url]/api/shorturl/new and I will receive a shortened URL in the JSON response.
+      Example : <code>{&quot;original_url&quot;:&quot;www.google.com&quot;,&quot;short_url&quot;:1}</code></li>
+      <li>If I pass an invalid URL that doesn&#39;t follow the http://www.example.com(/more/routes) format, the JSON response will contain an error like <code>{&quot;error&quot;:&quot;invalid URL&quot;}</code>.
+      HINT: to be sure that the submitted url points to a valid site you can use the function <code>dns.lookup(host, cb)</code> from the dns core module.</li>
+      <li>When I visit the shortened URL, it will redirect me to my original link.</li>
+      </ul>
+      <h3 id="short-url-creation">Short URL Creation</h3>
+      <p>Request: <code>POST [project_url]/api/shorturl/new - https://www.google.com</code></p>
+      <p>Response: <code>{&quot;original_url&quot;:&quot;www.google.com&quot;,&quot;short_url&quot;:1}</code>   </p>
+      <h3 id="shorten-url-usage-">Shorten URL Usage:</h3>
+      <p>Request: <code>GET [this_project_url]/api/shorturl/1</code></p>
+      <p>Response: Will Redirect to https://www.google.com</p>
+      <div class="form-wrapper">
+      <form method="post" action="api/shorturl/new">
+        <label>URL to be shortened</label>
+        <input type="text" name="url_input" placeholder="https://www.google.com">
+        <button type="submit" id="submit">POST URL</button>
+      </form>
+      </div>
+    </main>
+    <footer>
+      <p></p>
+    </footer>
+  </body>
+</html>
