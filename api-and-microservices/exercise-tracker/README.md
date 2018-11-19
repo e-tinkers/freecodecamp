@@ -1,6 +1,6 @@
 # API Project: Exercise Tracker Microservice
 
-User can create a new user name and add exercise log via online forms. User can query exercise logs via API endpoints. API endpoints are described below.
+User can create a new user name and add exercise log via online forms. User can query exercise logs via API endpoints. API endpoints are described below. See [live demo](https://henry-exercise-tracker.glitch.me).
 
 ### Add new user:
 API endpoint:
@@ -57,5 +57,3 @@ Error response:
 from, to = dates (yyyy-mm-dd);
 duration = in minutes;
 limit = number
-
-See [live demo](https://henry-exercise-tracker.glitch.me)
