@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const md5 = require('md5');
+const shortid = require('shortid');
 require('dotenv').load();
 const port = process.env.PORT || 3000;
 
@@ -59,8 +59,7 @@ app.post('/api/exercise/new-user', (req, res) => {
     if (doc) {
       res.send('username already taken');
     } else {
-      let hashedId = md5(req.body.username).substr(0,10);
-      let query = {userId: hashedId, username: req.body.username};
+      let query = {userId: shortid.generate(), username: req.body.username};
       User.create(query, function(err, user) {
         res.json({_id:user.userId, username: user.username});
       });
@@ -88,7 +87,7 @@ app.post('/api/exercise/add', (req, res) => {
         duration: duration,
         date: date
       };
-      
+
       Log.create(query, function(err, doc) {
         res.json({
           username:user.username,
