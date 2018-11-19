@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Exercise Tracker(freeCodeCamp project)</title>
+    <meta name="description" content="User can create a new user name and add exercise log via online forms. User can query exercise logs via API endpoints.">
+    <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <main>
+      <h1>API Project: Exercise Tracker Microservice</h1>
+      <p>User can create a new user name and add exercise log via online forms. User can query exercise logs via API endpoints. API endpoints are described below.</p>
+      <form class="wrapper" action="/api/exercise/new-user" method="post">
+        <h3>Create a New User</h3>
+        <input type="text" name="username" placeholder="username">
+        <input type="submit" value="Submit">
+        <p>API endpoint:</p>
+        <pre><code>POST /api/exercise/new-user --username
+        </code></pre>
+        <p>Response:</p>
+        <pre><code>{&quot;username&quot;:&quot;testingE&quot;,&quot;_id&quot;:&quot;ByiJUd06Q&quot;}
+        </code></pre>
+        <p>Error response:</p>
+        <pre><code>username already taken
+        </code></pre>
+      </form>
+      <form class="wrapper" action="/api/exercise/add" method="post">
+        <h3>Add exercises</h3>
+        <input type="text" name="userId" placeholder='userId*'>
+        <input type="text" name="description" placeholder="description*">
+        <input type="text" name="duration" placeholder="duration* (mins.)">
+        <input type="text" name="date" placeholder="date (yyyy-mm-dd)">
+        <input type="submit" value="Submit">
+        <p>API endpoint:</p>
+        <pre><code>POST /api/exercise/add --{user_id}, {description}, {duration}, [date]
+        </code></pre>
+        <p>Response:</p>
+        <pre><code>
+  {
+    &quot;username&quot;:&quot;testingE&quot;,
+    &quot;description&quot;:&quot;cycling&quot;,
+    &quot;duration&quot;:120,&quot;_id&quot;:
+    &quot;ByiJUd06Q&quot;,
+    &quot;date&quot;:&quot;Sun Nov 18 2018&quot;
+  }
+        </code></pre>
+        <p>Error response:</p>
+        <pre><code>Path `description` is required.</code></pre>
+      </form>
+    <div class="wrapper">
+      <h3>GET users’s exercise log:</h3>
+      <p>API endpoint:</p>
+      <pre><code>GET /api/exercise/log?{userId=userId}[&amp;from=from][&amp;to=to][&amp;limit=limit]
+      </code></pre>
+      <p>Response:</p>
+      <pre><code>
+{
+  &quot;_id&quot;:&quot;ByiJUd06Q&quot;,
+  &quot;username&quot;:&quot;testingE&quot;,
+  &quot;count&quot;:1,
+  &quot;log&quot;:[
+      {&quot;description&quot;:&quot;cycling&quot;,
+      &quot;duration&quot;:120,
+      &quot;date&quot;:&quot;Sun Nov 18 2018&quot;}
+    ]
+}
+      </code></pre>
+      <p>Error response:</p>
+      <pre><code>unknown userId</code></pre>
+    </div>
+    <p>{ } = required | [ ] = optional | from, to = dates (yyyy-mm-dd) | duration = in minutes | limit = number</p>
+    </main>
+    <footer>
+      <p></p>
+    </footer>
+  </body>
+</html>
