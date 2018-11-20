@@ -206,11 +206,18 @@ $( document ).ready(function() {
 
   let len = quotes.length;
   let i = Math.floor(Math.random()*len);
-
-  $( "#new-quote" ).bind( "click", function() {
+  
+  let injectQuote = function() {
     $( "#text" ).html( quotes[i].quote );
     $( "#author" ).html( "- "+quotes[i].author );
-    i = ( i++ ) % len;
+    i = ( i + 1 ) % len;
+  }
+
+  injectQuote();
+
+  $( "#new-quote" ).on( "click", function(event) {
+    event.preventDefault();
+    injectQuote();
   });
 
 });
