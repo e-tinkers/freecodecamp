@@ -26,7 +26,8 @@ app.get('/api/exercise/log', (req, res) => {
   from = (from === undefined) ? new Date(0) : new Date(from);
   to = (to === undefined) ? new Date() : new Date(to);
 
-  User.findOne({userId: userId}, function(err, user) {
+  User.findOne({userId: userId}, function(err, user, next) {
+    if (err) return next(err);
     if (user) {
       Log
       .find({userId: userId, date: {$gte: new Date(from), $lte: new Date(to)}},
@@ -53,9 +54,9 @@ app.get('/api/exercise/log', (req, res) => {
   });
 });
 
-app.post('/api/exercise/new-user', (req, res) => {
+app.post('/api/exercise/new-user', (req, res, next) => {
   User.findOne({username: req.body.username}, function(err, doc){
-    if (err) return console.log(err);
+    if (err) return next(err);
     if (doc) {
       res.send('username already taken');
     } else {
@@ -67,42 +68,49 @@ app.post('/api/exercise/new-user', (req, res) => {
   });
 });
 
-app.post('/api/exercise/add', (req, res) => {
+app.post('/api/exercise/add', (req, res, next) => {
   let {userId, description, duration, date} = req.body;
   User.findOne({userId: userId}, function(err, user) {
-    if (err) return console.log(err);
+    if (err) return next(err);
     if (!user) {
       res.status(400).send("unknown _Id");
-    } else if (!description) {
-      res.status(400).send("Path `description` is required");
-    } else if (!duration) {
-      res.status(400).send("Path `duration` is required");
-    } else {
-
-      date = (date)? new Date(date) : new Date();
-
-      const query = {
-        userId: userId,
-        description: description,
-        duration: duration,
-        date: date
-      };
-
-      Log.create(query, function(err, doc) {
-        res.json({
-          username:user.username,
-          description: doc.description,
-          duration:doc.duration,
-          _id:doc.userId,
-          date: doc.date.toDateString()
-        })
-      });
     }
+
+    date = (date)? new Date(date) : new Date();
+    const query = {
+      userId: userId,
+      description: description,
+      duration: duration,
+      date: date
+    };
+
+    Log.create(query, function(err, doc) {
+      if (err) return next(err);
+      res.json({
+        username:user.username,
+        description: doc.description,
+        duration:doc.duration,
+        _id:doc.userId,
+        date: doc.date.toDateString()
+      })
+    });
+
   });
 });
 
 app.use( (req, res, next) => {
   res.status(404).send('404 - Not found');
+});
+
+app.use(function(err, req, res, next) {
+  if (err.errors) {    //mongoose errors
+    const keys=Object.keys(err.errors);
+    return res.status(400).send(err.errors[keys[0]].message);
+  }
+  else {    // node/express error
+    console.log(err);
+    return res.status(500).send("Internal error");
+  }
 });
 
 app.listen(port, () => console.log(`Server is running at port ${port}`));
