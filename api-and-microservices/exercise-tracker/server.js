@@ -28,43 +28,37 @@ app.get('/api/exercise/log', (req, res) => {
 
   User.findOne({userId: userId}, function(err, user, next) {
     if (err) return next(err);
-    if (user) {
-      Log
-      .find({userId: userId, date: {$gte: new Date(from), $lte: new Date(to)}},
-        {_id: 0, __v: 0})
-      .sort({date: 1})
-      .limit(parseInt(limit))
-      .exec(function(err, logs) {
-        res.json({
-          _id:user.userId,
-          username:user.username,
-          count:logs.length,
-          log: logs.map(function(log) {
-                  return {
-                    description: log.description,
-                    duration: log.duration,
-                    date: log.date.toDateString()
-                  }
-          })
-        });
+    if (!user) return res.status(400).send("unknown userId");
+    Log
+    .find({userId: userId, date: {$gte: new Date(from), $lte: new Date(to)}},
+      {_id: 0, __v: 0})
+    .sort({date: 1})
+    .limit(parseInt(limit))
+    .exec(function(err, logs) {
+      res.json({
+        _id:user.userId,
+        username:user.username,
+        count:logs.length,
+        log: logs.map(function(log) {
+                return {
+                  description: log.description,
+                  duration: log.duration,
+                  date: log.date.toDateString()
+                }
+        })
       });
-    } else {
-      res.send("unknown userId");
-    }
+    });
   });
 });
 
 app.post('/api/exercise/new-user', (req, res, next) => {
   User.findOne({username: req.body.username}, function(err, doc){
     if (err) return next(err);
-    if (doc) {
-      res.send('username already taken');
-    } else {
-      let query = {userId: shortid.generate(), username: req.body.username};
-      User.create(query, function(err, user) {
-        res.json({_id:user.userId, username: user.username});
-      });
-    }
+    if (doc) return res.send('username already taken');
+    let query = {userId: shortid.generate(), username: req.body.username};
+    User.create(query, function(err, user) {
+      res.json({_id:user.userId, username: user.username});
+    });
   });
 });
 
@@ -72,16 +66,13 @@ app.post('/api/exercise/add', (req, res, next) => {
   let {userId, description, duration, date} = req.body;
   User.findOne({userId: userId}, function(err, user) {
     if (err) return next(err);
-    if (!user) {
-      res.status(400).send("unknown _Id");
-    }
+    if (!user) return res.status(400).send("unknown _Id");
 
-    date = (date)? new Date(date) : new Date();
     const query = {
       userId: userId,
       description: description,
       duration: duration,
-      date: date
+      date: (date)? new Date(date) : new Date()
     };
 
     Log.create(query, function(err, doc) {
