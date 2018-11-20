@@ -1,15 +1,3 @@
-<!-- User Story #1: I can see a wrapper element with a corresponding id="quote-box".
-User Story #2: Within #quote-box, I can see an element with a corresponding id="text".
-User Story #3: Within #quote-box, I can see an element with a corresponding id="author".
-User Story #4: Within #quote-box, I can see a clickable element with a corresponding id="new-quote".
-User Story #5: Within #quote-box, I can see a clickable element with a corresponding id="tweet-quote".
-User Story #6: On first load, my quote machine displays a random quote in the element with id="text".
-User Story #7: On first load, my quote machine displays the random quote's author in the element with id="author".
-User Story #8: When the #new-quote button is clicked, my quote machine should fetch a new quote and display it in the #text element.
-User Story #9: My quote machine should fetch the new quote's author when the #new-quote button is clicked and display it in the #author element.
-User Story #10: I can tweet the current quote by clicking on the #tweet-quote a element. This a element should include the "twitter.com/intent/tweet" path in it's href attribute to tweet the current quote.
-User Story #11: The #quote-box wrapper element should be horizontally centered. Please run tests with browser's zoom level at 100% and page maximized. -->
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -23,18 +11,14 @@ User Story #11: The #quote-box wrapper element should be horizontally centered. 
 
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
       <main role="main" class="cover" id="quote-box">
-        <p class="lead" id="text">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
-        <p class="lead" id="author">- Albert Einsten</p>
+        <p class="lead" id="text"></p>
+        <p class="lead" id="author"></p>
         <p class="lead">
           <a href="#" class="btn btn-md btn-secondary" id="new-quote">New Quote</a>
           <a href="https://twitter.com/intent/tweet" class="btn btn-md btn-secondary" id="tweet-quote">Tweet Quote</a>
         </p>
         <p class="credit">Random Quote Machine, by <a href="https://github.com/e-tinkers/" rel="nofollow me">H Cheung</a>.</p>
       </main>
-
-      <!-- <footer class="footer mt-auto">
-          <p>Random Quote Machine, by <a href="https://github.com/e-tinkers/" rel="nofollow me">H Cheung</a>.</p>
-      </footer> -->
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
