@@ -201,7 +201,7 @@ const quotes = [
     "author": "Hallman"
   }
 ];
-class Buttons extends React.Component {
+class QuoteBox extends React.Component {
   constructor(props) {
     super(props);
     const len = props.quotes.length;
@@ -247,6 +247,6 @@ class Buttons extends React.Component {
 };
 
 ReactDOM.render(
-  <Buttons quotes={quotes} />,
+  <QuoteBox quotes={quotes} />,
   document.getElementById('quote-box')
 );
