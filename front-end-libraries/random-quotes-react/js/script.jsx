@@ -215,11 +215,13 @@ class QuoteBox extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
   handleClick() {
-    this.state.index = (this.state.index + 1) % this.state.len;
-    this.setState({
-      index: this.state.index,
-      quote: this.props.quotes[this.state.index].quote,
-      author: this.props.quotes[this.state.index].author
+    this.setState((state) => {
+      this.state.index = (state.index + 1) % state.len;
+      return {
+        index: this.state.index,
+        quote: this.props.quotes[this.state.index].quote,
+        author: this.props.quotes[this.state.index].author
+      }
     });
   }
   getQuote() {
