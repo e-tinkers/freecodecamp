@@ -1,4 +1,4 @@
-## Responsive Web Design
+## Front End Libraries
 
 These are my implementations of [freeCodeCamp](https://learn.freecodecamp.org) Front End Libraries projects.
 
@@ -9,3 +9,4 @@ These are my implementations of [freeCodeCamp](https://learn.freecodecamp.org) F
 - Markdown Previewer [React](https://github.com/e-tinkers/freecodecamp/tree/master/front-end-libraries/markdown-previewer-react) | [Javascript](https://github.com/e-tinkers/freecodecamp/tree/master/front-end-libraries/markdown-previewer-js)
 
   [![](https://github.com/e-tinkers/freecodecamp/blob/master/front-end-libraries/thumbnails/markdown-previewer.png)](https://e-tinkers.github.io/freecodecamp/front-end-libraries/markdown-previewer-react/index.html)
+
