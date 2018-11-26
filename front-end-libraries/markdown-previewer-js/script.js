@@ -1,7 +1,7 @@
 'use strict';
 
 document.addEventListener("DOMContentLoaded", function(event) {
-  
+
   const markdown = `[![marked logo](marked-logo.png)](https://marked.js.org)
 
   # Marked
@@ -56,9 +56,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   const editor = document.getElementById('editor');
   const preview = document.getElementById('preview');
-  console.log(editor, preview);
-  console.log(markdown);
-  console.log(marked(markdown));
+
   editor.innerHTML = escape(markdown);
   preview.innerHTML = marked(markdown);
 
