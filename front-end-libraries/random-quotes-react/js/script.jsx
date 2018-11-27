@@ -217,12 +217,12 @@ class QuoteBox extends React.Component {
   render() {
     return (
       <div>
-        <p className="lead" id="text"
+        <p className="lead" id="text">
           {quotes[this.state.index].quote}
-        ></p>
-        <p className="lead" id="author"
+        </p>
+        <p className="lead" id="author">
           {quotes[this.state.index].author}
-        ></p>
+        </p>
         <p className="lead">
           <a href="#" className="btn btn-md btn-secondary" id="new-quote"
           onClick = {this.handleClick}
