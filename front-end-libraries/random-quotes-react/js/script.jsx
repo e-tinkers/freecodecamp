@@ -209,7 +209,8 @@ class QuoteBox extends React.Component {
     };
     this.handleClick = this.handleClick.bind(this);
   }
-  handleClick() {
+  handleClick(event) {
+    event.preventDefault();
     this.setState({
         index: (this.state.index + 1) % quotes.length
     });
