@@ -204,37 +204,26 @@ const quotes = [
 class QuoteBox extends React.Component {
   constructor(props) {
     super(props);
-    const len = props.quotes.length;
-    let index = Math.floor(Math.random()*props.quotes.length);
     this.state = {
-      len: len,
-      index: index,
-      quote: props.quotes[index].quote,
-      author: props.quotes[index].author
+      index: Math.floor(Math.random()*quotes.length)
     };
     this.handleClick = this.handleClick.bind(this);
   }
   handleClick() {
     this.setState((state) => {
-      const i = (state.index + 1) % state.len;
       return {
-        index: i,
-        quote: this.props.quotes[i].quote,
-        author: this.props.quotes[i].author
+        index: (state.index + 1) % quotes.length;
       }
     });
-  }
-  getQuote() {
-    return {quote: this.state.quote, author: this.state.author};
   }
   render() {
     return (
       <div>
         <p className="lead" id="text"
-          dangerouslySetInnerHTML = {{__html:this.getQuote().quote}}
+          {quotes[this.state.index].quote}
         ></p>
         <p className="lead" id="author"
-          dangerouslySetInnerHTML = {{__html:this.getQuote().author}}
+          {quotes[this.state.index].author}
         ></p>
         <p className="lead">
           <a href="#" className="btn btn-md btn-secondary" id="new-quote"
@@ -249,6 +238,6 @@ class QuoteBox extends React.Component {
 };
 
 ReactDOM.render(
-  <QuoteBox quotes={quotes} />,
+  <QuoteBox />,
   document.getElementById('quote-box')
 );
