@@ -19,6 +19,7 @@ This repository contains my version of coding solutions of [freeCodeCamp](https:
 - [Front End Libraries](https://github.com/e-tinkers/freecodecamp/tree/master/front-end-libraries)
     - Random Quotes Machine
     - Markdown Previewer
+    - Drum Machine
 - Data Visualization
 - [API and Microservices](https://github.com/e-tinkers/freecodecamp/tree/master/api-and-microservices)
     - Timestamp Microservice
