@@ -13,3 +13,7 @@ These are my implementations of [freeCodeCamp](https://learn.freecodecamp.org) F
 - [Drum Machine](https://github.com/e-tinkers/freecodecamp/tree/master/front-end-libraries/drum-machine)
 
   [![](https://github.com/e-tinkers/freecodecamp/blob/master/front-end-libraries/thumbnails/drum-machine.png)](https://e-tinkers.github.io/freecodecamp/front-end-libraries/drum-machine/index.html)
+
+- [Drum Machine](https://github.com/e-tinkers/freecodecamp/tree/master/front-end-libraries/calculator)
+
+  [![](https://github.com/e-tinkers/freecodecamp/blob/master/front-end-libraries/thumbnails/calculator.png)](https://e-tinkers.github.io/freecodecamp/front-end-libraries/calculator/index.html)
