@@ -10,11 +10,12 @@
   margin: 50px auto;
 }
 .calculator {
-  /* overflow: hidden; */
   width: 100%;
 }
 .display {
-  width: 100%;
+  overflow: auto;
+  direction:rtl;
+  width: 320px;
   border: 1px solid #eeeeee;
   height: 120px;
   text-align: right;
