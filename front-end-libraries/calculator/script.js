@@ -95,15 +95,13 @@ class Calculator extends React.Component {
   }
 
   calculateResult() {
+    const weightTable = {"+": 1, "-": 1, "*": 2, "/": 2};
     let valueStack=[];
     let operatorStack=[];
-    let topOf = stack => stack[stack.length-1];
-    let isEmpty = stack => stack.length==0;
-    let weight = function(op) {
-      const weightTable = {"+": 1, "-": 1, "*": 2, "/": 2};
-      return weightTable[op];
-    };
-    let performArithmatic = function() {
+    const topOf = stack => stack[stack.length-1];
+    const isEmpty = stack => stack.length==0;
+    const weight = op => weightTable[op];
+    const performArithmatic = function() {
       while (operatorStack.length > 0) {
           const val2 = valueStack.pop();
           const val1 = valueStack.pop();
@@ -125,7 +123,8 @@ class Calculator extends React.Component {
       }
     };
 
-    let stack = this.state.stack;
+    // create a copy of the stack, add numeric input before '=' to it
+    let stack = this.state.stack.slice();
     stack.push(parseFloat(this.state.display));
     // Refer to http://www2.lawrence.edu/fast/GREGGJ/CMSC150/071Calculator/Calculator.html for this part of the code
     for (let i=0; i<stack.length; i++) {
@@ -154,8 +153,8 @@ class Calculator extends React.Component {
   }
 
   processOperator(input) {
-    let s = this.state.stack;
-    if (/[+\-*/]/.test(this.state.display)) {
+    let s = this.state.stack.slice();
+    if (this.isOperator(this.state.display)) {
       s.pop();
       s.push(input);    //drop the previous operator and replace with new one
       this.setState({
@@ -178,12 +177,11 @@ class Calculator extends React.Component {
   processNumeric(input) {
     this.setState(state => {
       let valueToShow = '';
-      let prevDisplay = state.display;
       if (state.decimal) {    // decimal point is set
-        valueToShow = prevDisplay + input;
+        valueToShow = state.display + input;
       } else {    // is integer
         // reset display if previous display is an operator
-        prevDisplay = (/[+\-*/]/.test(state.display)) ? '0': prevDisplay;
+        const prevDisplay = (this.isOperator(state.display)) ? '0': state.display;
         valueToShow = (parseInt(prevDisplay) * 10 + parseInt(input)).toString();
       }
       return {
