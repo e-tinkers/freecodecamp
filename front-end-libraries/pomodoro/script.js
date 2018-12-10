@@ -73,21 +73,24 @@ class Pomodoro extends React.Component {
   clockStart() {
     if (this.state.runningId == null) {    // a new start
       const that = this;
+
       const callback = function() {
         if (that.state.timeRemain === 0) {   // switch from session to break or vice versa
           that.switchMode();
-          const av =document.getElementById('beep');
-          av.play();
+          document.getElementById('beep').play();
         }
         else {
           that.setState({
             timeRemain: that.state.timeRemain - 1,
-            runningId: ticker,
             status: "Start"
           });
         }
       };
+
       const ticker = setInterval(callback, 1000);
+      that.setState({
+        runningId: ticker
+      });
     }
     else {      // pause
       clearInterval(this.state.runningId);
