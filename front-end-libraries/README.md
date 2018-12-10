@@ -17,3 +17,7 @@ These are my implementations of [freeCodeCamp](https://learn.freecodecamp.org) F
 - [JavaScript Calculator](https://github.com/e-tinkers/freecodecamp/tree/master/front-end-libraries/calculator)
 
   [![](https://github.com/e-tinkers/freecodecamp/blob/master/front-end-libraries/thumbnails/calculator.png)](https://e-tinkers.github.io/freecodecamp/front-end-libraries/calculator/index.html)
+
+- [Pomodoro Clock](https://github.com/e-tinkers/freecodecamp/tree/master/front-end-libraries/pomodoro)
+
+  [![](https://github.com/e-tinkers/freecodecamp/blob/master/front-end-libraries/thumbnails/pomodoro-clock.png)](https://e-tinkers.github.io/freecodecamp/front-end-libraries/pomodoro/index.html)
