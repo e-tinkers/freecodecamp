@@ -11,10 +11,10 @@ function Display(props) {
       </div>
         <span id="time-left" className="D7MBI timer-counter">{props.timeRemain}</span>
         <div className="timer-info-display">
-          <span id="ses-leading-zero" className="D7MI info smaller">0</span>
+          <span className="D7MI info smaller">{props.padZero(props.sesLen)}</span>
           <span id="session-length" className="D7MI info smaller">{props.sesLen}</span>
           <span id="timer-label" className="D14MI info">{props.mode}</span>
-          <span id="brk-leading-zero" className="D7MI info smaller">0</span>
+          <span className="D7MI info smaller">{props.padZero(props.brkLen)}</span>
           <span id="break-length" className="D7MI info smaller">{props.brkLen}</span>
         </div>
     </div>
@@ -173,10 +173,8 @@ class Pomodoro extends React.Component {
   // and will failed the test if there is a leading zero, it however break my display
   // formating. this is a hack to add a '0' prior $session-length and #break-Length
   // so it will pass the test, yet make the display formating as wish.
-  padZero(mins, typeId) {
-    const htmlTag = document.getElementById(typeId);
-    (mins > 10) ? htmlTag.textContent="" :htmlTag.textContent="0";
-    return mins;
+  padZero(mins) {
+    return (mins >= 10) ? '' : '0';
   }
 
   clockStr(seconds) {
@@ -191,10 +189,11 @@ class Pomodoro extends React.Component {
         <audio id="beep" type="audio/mp3" ref={(audio) => { this.audioPlay = audio; }} src="good-morning.mp3" preload="auto"></audio>
         <Display
           mode = {this.state.mode}
-          sesLen = {this.padZero(this.state.sessionLength, "ses-leading-zero")}
-          brkLen = {this.padZero(this.state.breakLength, "brk-leading-zero")}
+          sesLen = {this.state.sessionLength}
+          brkLen = {this.state.breakLength}
           timeRemain = {this.clockStr(this.state.timeRemain)}
           backlight = {this.state.backlight}
+          padZero = {this.padZero}
         />
         <DurationControl
           sessionIncrement = {this.sessionIncrement.bind(this)}
