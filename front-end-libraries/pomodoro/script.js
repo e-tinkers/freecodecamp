@@ -192,7 +192,7 @@ class Pomodoro extends React.Component {
         <Display
           mode = {this.state.mode}
           sesLen = {this.padZero(this.state.sessionLength, "ses-leading-zero")}
-          brkLen = {this.padZero(this.state.breakLength, "brk-leading-zero"}
+          brkLen = {this.padZero(this.state.breakLength, "brk-leading-zero")}
           timeRemain = {this.clockStr(this.state.timeRemain)}
           backlight = {this.state.backlight}
         />
