@@ -174,7 +174,7 @@ class Pomodoro extends React.Component {
   // formating. this is a hack to add a '0' prior $session-length and #break-Length
   // so it will pass the test, yet make the display formating as wish.
   padZero(mins, typeId) {
-    htmlTag = document.getElementById(typeId);
+    const htmlTag = document.getElementById(typeId);
     (mins > 10) ? htmlTag.textContent="" :htmlTag.textContent="0";
     return mins;
   }
