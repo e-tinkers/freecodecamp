@@ -53,7 +53,7 @@ function Footer(props) {
   return (
     <div className="text-wrapper">
       <p>- Pomodoro Clock -</p>
-      <p>Designed by <a href="#" target="_blank" rel="nofollow me">H Cheung</a></p>
+      <p>Designed by <a href="https://github.com/e-tinkers/freecodecamp/tree/master/front-end-libraries/pomodoro" target="_blank" rel="nofollow me">H Cheung</a></p>
     </div>
   )
 }
