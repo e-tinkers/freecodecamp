@@ -1,0 +1,154 @@
+* {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "D14MI";
+  src: url("./fonts/DSEG14Modern-Italic.woff") format('woff');
+}
+@font-face {
+  font-family: "D7MI";
+  src: url("./fonts/DSEG7Modern-Italic.woff") format('woff');
+}
+@font-face {
+  font-family: "D7MBI";
+  src: url("./fonts/DSEG7Modern-BoldItalic.woff") format('woff');
+}
+.D7MI {
+  font-family: "D7MI";
+}
+.D7MBI {
+  font-family: "D7MBI";
+}
+.D14MI {
+  font-family: "D14MI";
+  margin-left: 6px;
+  margin-right: 6px;
+}
+
+.container {
+  max-width: 320px;
+  width: 100%;
+  margin: 40px auto;
+  padding: 20px 0;
+  border: 6px solid rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  box-shadow: 4px 4px 1px 0px rgba(0,0,0, 0.1);
+}
+
+.timer-wrapper {
+	position:relative;
+	border:6px solid #000;
+	border-radius:9px;
+	height:165px;
+	width:268px;
+	box-shadow: 4px 4px 1px 0px rgba(0,0,0,0.1) inset;
+  margin: auto;
+}
+#backlight-session {
+  background-color: #00ccff; /*default blue background*/
+}
+#backlight-break {
+  background-color: #00ffcc; /* break=green, alternative: orange-like #fb7c00 */
+}
+.timer-time-mask {
+	z-index:50;
+	position:absolute;
+	top:70px;
+	left:10px;
+	color:rgba(0,0,0,0.05);
+	font-size:70px;
+}
+.timer-counter {
+	z-index:100;
+	position:absolute;
+	top:70px;
+	left:10px;
+	font-size:70px;
+}
+.timer-info-mask,
+.timer-info-display {
+	position:absolute;
+	top:13px;
+	left:15px;
+	font-size:27px;
+}
+.timer-info-mask {
+  z-index: 50;
+  color: rgba(0, 0, 0, 0.05);
+}
+.timer-info-display .info {
+  z-index: 100;
+}
+.timer-info-display .smaller,
+.timer-info-mask .smaller {
+  font-size: 20px;
+}
+
+.button-wrapper {
+  display:flex;
+  align-items: center;
+  align-content: space-between;
+  max-width: 320px;
+  width: 100%;
+  margin:20px auto;
+}
+.button-wrapper fieldset {
+  width: 140px;
+  font-size: 0.875rem;
+  margin: 0 18px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+.button-wrapper fieldset legend {
+  text-align:center;
+}
+.button-wrapper fieldset button {
+  font-weight: 400;
+  font-size: 0.875rem;
+  width: 34px;
+  margin-left: 6px;
+  height: 25px;
+  background: white;
+  border-radius: 4px;
+  border: 3px solid rgba(0, 0, 0, 0.5) inset;
+}
+.control-buttons {
+  margin: auto;
+}
+.control-buttons button {
+  width: 70px;
+  height: 70px;
+  border-radius: 35px;
+  border: 1px solid grey;
+  font-weight: 400;
+  font-size: 1rem;
+  margin: 20px;
+  background: white;
+  box-shadow: 4px 4px 1px 0px rgba(0,0,0,0.1) inset;
+}
+#start_stop {
+  color: #00ddff;
+  text-shadow: 1px 0 #00ccff;
+}
+#reset {
+  color: #fb4000;
+  text-shadow: 1px 0 #fb3000;
+}
+.text-wrapper {
+  text-align: center;
+  font-size: 0.75rem;
+  font-family: menlo, monaco, monospace;
+}
+.text-wrapper p {
+  margin: 2px;
+}
+.text-wrapper a,
+.text-wrapper a:visited {
+  color: #000000;
+  text-decoration: underline;
+}
+.text-wrapper a:hover {
+  color: #00ccff;
+  text-decoration: none;
+}
