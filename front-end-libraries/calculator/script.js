@@ -10,28 +10,28 @@ function Display(props) {
 
 function KeyPads(props) {
   const keys = [
-    { class: "keys wider", id: "clear", value: "C" },
-    { class: "keys", id: "divide", value: "/" },
-    { class: "keys", id: "multiply", value: "*" },
-    { class: "keys numeric", id: "seven", value: "7" },
-    { class: "keys numeric", id: "eight", value: "8" },
-    { class: "keys numeric", id: "nine", value: "9" },
-    { class: "keys", id: "subtract", value: "-" },
-    { class: "keys numeric", id: "four", value: "4" },
-    { class: "keys numeric", id: "five", value: "5" },
-    { class: "keys numeric", id: "six", value: "6" },
-    { class: "keys", id: "add", value: "+" },
-    { class: "keys numeric", id: "one", value: "1" },
-    { class: "keys numeric", id: "two", value: "2" },
-    { class: "keys numeric", id: "three", value: "3" },
-    { class: "keys long", id: "equals", value: "=" },
-    { class: "keys numeric wider", id: "zero", value: "0" },
-    { class: "keys numeric", id: "decimal", value: "." }
-  ];
+      { class: "keys wider", id: "clear", value: "C", fn: props.clear },
+      { class: "keys", id: "divide", value: "/", fn: props.processOperator },
+      { class: "keys", id: "multiply", value: "*", fn: props.processOperator },
+      { class: "keys numeric", id: "seven", value: "7", fn: props.processNumeric },
+      { class: "keys numeric", id: "eight", value: "8", fn: props.processNumeric },
+      { class: "keys numeric", id: "nine", value: "9", fn: props.processNumeric },
+      { class: "keys", id: "subtract", value: "-", fn: props.processOperator },
+      { class: "keys numeric", id: "four", value: "4", fn: props.processNumeric },
+      { class: "keys numeric", id: "five", value: "5", fn: props.processNumeric },
+      { class: "keys numeric", id: "six", value: "6", fn: props.processNumeric },
+      { class: "keys", id: "add", value: "+", fn: props.processOperator },
+      { class: "keys numeric", id: "one", value: "1", fn: props.processNumeric },
+      { class: "keys numeric", id: "two", value: "2", fn: props.processNumeric },
+      { class: "keys numeric", id: "three", value: "3", fn: props.processNumeric },
+      { class: "keys long", id: "equals", value: "=", fn: props.calculateResult },
+      { class: "keys numeric wider", id: "zero", value: "0", fn: props.processNumeric },
+      { class: "keys numeric", id: "decimal", value: ".", fn: props.handleDecimalPoint }
+    ];
   const keyPads = keys.map(key => {
     return (
-      <button type="button" className={key.class} key={key.id} id={key.id}
-        onClick={props.handleClick}>
+      <button type="button" className={key.class} key={key.value} id={key.id}
+        onClick={key.fn}>
         {key.value}
       </button>
     )
@@ -52,46 +52,12 @@ class Calculator extends React.Component {
       decimal: false,
       stack: []
     };
-    this.handleClick = this.handleClick.bind(this);
+    this.processNumeric = this.processNumeric.bind(this);
+    this.processOperator = this.processOperator.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
-  }
-
-  handleClick(e) {
-    const keyInput = e.target.innerHTML.toUpperCase();
-    switch (keyInput) {
-      case 'C':
-        this.setState({
-          formula: '',
-          display: '0',
-          decimal: false,
-          stack: []
-        });
-        break;
-      case '=':
-        this.calculateResult();
-        break;
-      case '.':
-        this.setState(state => {
-          if (state.decimal) {
-            return;
-          }
-          return {
-            formula: state.formula + keyInput,
-            display: parseInt(state.display).toString() + keyInput,
-            decimal: !state.decimal
-          };
-        });
-        break;
-      case "+":
-      case "-":
-      case "*":
-      case "/":
-        this.processOperator(keyInput);
-        break;
-      default:
-        this.processNumeric(keyInput);
-        break;
-    }
+    this.calculateResult = this.calculateResult.bind(this);
+    this.handleDecimalPoint = this.handleDecimalPoint.bind(this);
+    this.clear = this.clear.bind(this);
   }
 
   calculateResult() {
@@ -152,7 +118,8 @@ class Calculator extends React.Component {
     });
   }
 
-  processOperator(input) {
+  processOperator(e) {
+    const input = e.target.textContent;
     let s = this.state.stack.slice();
     if (this.isOperator(this.state.display)) {
       s.pop();
@@ -174,7 +141,8 @@ class Calculator extends React.Component {
     }
   }
 
-  processNumeric(input) {
+  processNumeric(e) {
+    const input = e.target.textContent;
     this.setState(state => {
       let valueToShow = '';
       if (state.decimal) {    // decimal point is set
@@ -188,6 +156,29 @@ class Calculator extends React.Component {
         formula: this.state.formula + input,
         display: valueToShow
       };
+    });
+  }
+
+  handleDecimalPoint(e) {
+    const input = e.target.textContent;
+    this.setState(state => {
+      if (state.decimal) {
+        return;
+      }
+      return {
+        formula: state.formula + input,
+        display: parseInt(state.display).toString() + input,
+        decimal: !state.decimal
+      };
+    });
+  }
+
+  clear() {
+    this.setState({
+      formula: '',
+      display: '0',
+      decimal: false,
+      stack: []
     });
   }
 
@@ -210,8 +201,17 @@ class Calculator extends React.Component {
   render() {
     return (
       <div className="calculator">
-        <Display formula={this.state.formula} display={this.state.display}/>
-        <KeyPads handleClick={this.handleClick} />
+        <Display
+          formula = {this.state.formula}
+          display = {this.state.display}
+        />
+        <KeyPads
+          processNumeric = {this.processNumeric}
+          processOperator = {this.processOperator}
+          calculateResult = {this.calculateResult}
+          handleDecimalPoint = {this.handleDecimalPoint}
+          clear = {this.clear}
+        />
       </div>
     );
   }
