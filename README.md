@@ -17,9 +17,11 @@ This repository contains my version of coding solutions of [freeCodeCamp](https:
     - Telephone Number Validator
     - Cash Register
 - [Front End Libraries](https://github.com/e-tinkers/freecodecamp/tree/master/front-end-libraries)
-    - Random Quotes Machine
-    - Markdown Previewer
-    - Drum Machine
+    - Random Quotes Machine (React | jQuery)
+    - Markdown Previewer (React | JavaScript)
+    - Drum Machine (React)
+    - JavaScript Calculator (React)
+    - Pomodoro Clock (React)
 - Data Visualization
 - [API and Microservices](https://github.com/e-tinkers/freecodecamp/tree/master/api-and-microservices)
     - Timestamp Microservice
