@@ -1,4 +1,4 @@
-**Visualize Data with a Bar Chart**
+##Visualize Data with a Bar Chart
 
 This is part of freeCodecamp Data Visualization projects that utilizing d3js to render data as chart.
 

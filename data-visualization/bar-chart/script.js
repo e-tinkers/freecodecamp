@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const req = new XMLHttpRequest();
   req.open('GET', url, true);
   req.send();
-  req.onload = function(dataset) {
+  req.onload = function() {
     var data = JSON.parse(req.responseText).data;
     barChart(data);
   }
