@@ -22,7 +22,12 @@ This repository contains my version of coding solutions of [freeCodeCamp](https:
     - Drum Machine (React)
     - JavaScript Calculator (React)
     - Pomodoro Clock (React)
-- **Data Visualization**
+- **[Data Visualization](https://github.com/e-tinkers/freecodecamp/tree/master/data-visualization) (d3.js)**
+    - Bar Chart
+    - Scatterplot Graph
+    - Heat Map
+    - Choropleth Map
+    - Treemap Diagram
 - **[API and Microservices](https://github.com/e-tinkers/freecodecamp/tree/master/api-and-microservices) (node.js)**
     - Timestamp Microservice
     - Request Header Parser Microservice
