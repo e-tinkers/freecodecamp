@@ -1,4 +1,4 @@
-## API and microservices
+## Data Visualization
 
 All the charts are built with d3.js data driven document library based on freeCodeCamp's Data Visualization proejcts.
 
