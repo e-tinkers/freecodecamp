@@ -1,6 +1,6 @@
-# freeCodeCamp
+# freeCodeCamp portfolio
 
-This repository contains my version of coding solutions of [freeCodeCamp](https://www.freecodecamp.org) projects and challenges.
+This repository contains my version of coding solutions of [freeCodeCamp](https://www.freecodecamp.org) full stack projects and challenges.
 
 ### Projects
 
@@ -10,7 +10,7 @@ This repository contains my version of coding solutions of [freeCodeCamp](https:
     - Build a Product Landing Page
     - Build a Technical Documentation Page
     - Build a Personal Portfolio Webpage
-- **[JavaScript Algorithms and Data  Structures](https://github.com/e-tinkers/freecodecamp/tree/master/javascript-algorithms-and-data-structures)** (JavaScript)
+- **[JavaScript Algorithms and Data  Structures](https://github.com/e-tinkers/freecodecamp/tree/master/javascript-algorithms-and-data-structures) (JavaScript)**
     - Palindrome Checker
     - Roman Numeral Converter
     - Caesars Cipher
@@ -18,7 +18,7 @@ This repository contains my version of coding solutions of [freeCodeCamp](https:
     - Cash Register
 - **[Front End Libraries](https://github.com/e-tinkers/freecodecamp/tree/master/front-end-libraries) (jQuery, React, Redux, Bootstrap, SASS)**
     - Random Quotes Machine (React and jQuery versions)
-    - Markdown Previewer (React and JavaScript versions)
+    - Markdown Previewer (React and JavaScript version)
     - Drum Machine (React)
     - JavaScript Calculator (React)
     - Pomodoro Clock (React)
