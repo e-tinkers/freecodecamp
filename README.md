@@ -10,7 +10,7 @@ This repository contains my version of coding solutions of [freeCodeCamp](https:
     - Build a Product Landing Page
     - Build a Technical Documentation Page
     - Build a Personal Portfolio Webpage
-- **[JavaScript Algorithms and Data  Structures](https://github.com/e-tinkers/freecodecamp/tree/master/javascript-algorithms-and-data-structures) (JavaScript)**
+- **[JavaScript Algorithms and Data  Structures](https://github.com/e-tinkers/freecodecamp/tree/master/javascript-algorithms-and-data-structures)** (JavaScript)
     - Palindrome Checker
     - Roman Numeral Converter
     - Caesars Cipher
