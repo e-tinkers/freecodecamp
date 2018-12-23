@@ -1,9 +1,5 @@
 'use strict';
 
-// User Story #13: My heat map should have a legend with a corresponding id="legend".
-// User Story #14: My legend should contain rect elements.
-// User Story #15: The rect elements in the legend should use at least 4 different fill colors.
-
 document.addEventListener('DOMContentLoaded', () => {
 
   // Canvas size
@@ -23,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Heat Map function
   function heatMap(dataset) {
+
     // Create the canvas
     const svg = d3.select(".chart")
       .append("svg")
@@ -32,47 +29,50 @@ document.addEventListener('DOMContentLoaded', () => {
       .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
     // color quantile scale
-    const baseTemp = dataset.baseTemperature;
     const colors = [
       "#5D2EE8", "#2F9EEE", "#2FC8EE", "#2DD91A", "#CBF22C",
       "#F2CE2C", "#F06E1D", "#E61717", "#3C2EA8", "#7A2EA1"
     ];
-
-    const minVariance = d3.min(dataset.monthlyVariance.map(d => d.variance));
-    const maxVariance = d3.max(dataset.monthlyVariance.map(d => d.variance));
+    const baseTemp = dataset.baseTemperature;
+    const min = d3.min(dataset.monthlyVariance.map(d => d.variance));
+    const maxV = d3.max(dataset.monthlyVariance.map(d => d.variance));
     const colorScale = d3.scaleQuantile()
-      .domain([baseTemp + minVariance, baseTemp, baseTemp + maxVariance])
+      .domain([baseTemp + minV, baseTemp, baseTemp + maxV])
       .range(colors);
 
     // x axis
-    const years = dataset.monthlyVariance.map(d => new Date(`${d.year}-01-01`));
+    const years = dataset.monthlyVariance.map(d => new Date(d.year}, 0, 1));
     const xMin = d3.min(years);
     const xMax = d3.max(years);
     const xScale = d3.scaleTime().domain([xMin, xMax]).range([0, w]);
     const xAxis = d3.axisBottom(xScale);
-
-    // y axis
-    const yScale = d3.scaleTime().domain([new Date(1970, 0, 1), new Date(1970, 11, 1)]).range([0, h]);
-    const yAxis = d3.axisLeft(yScale).tickFormat(d3.timeFormat("%B"));
     svg.append("g")
       .attr("id", "x-axis")
-      .attr("transform", "translate(0,"+ (h + 40) +")")
+      .attr("transform", `translate(0, ${h})`)
       .call(xAxis);
+
+    // y axis
+    const months = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+    const monthNames = [
+      "January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ];
+    const yScale = d3.scaleBand().domain(months).range([0, h]);
+    const yAxis = d3.axisLeft(yScale).tickFormat(d => monthNames[d]);
     svg.append("g")
-      .attr("transform", "translate(-1, 20)")
       .attr("id", "y-axis")
       .call(yAxis);
 
     // chart title and axis labels
     svg.append("text")
       .attr("x", 20)
-      .attr("y", -70)
+      .attr("y", -60)
       .attr("id", "title")
       .style("font-size", "24px")
       .text("Monthly Global Land-Surface Temperature");
     svg.append("text")
       .attr("x", 20)
-      .attr("y", -40)
+      .attr("y", -30)
       .attr("id", "description")
       .style("font-size", "20px")
       .text("1753 - 2015: variances from base temperature 8.66℃");
@@ -92,26 +92,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const colorAxis = d3.axisBottom(colorScale);
     const legend = svg.append("g")
       .attr("id","legend")
-      .attr("transform","translate(600,-60)")
+      .attr("transform","translate(600, 0)")
       .style("font-size","12px")
       .selectAll("rect")
       .data(colors)
       .enter();
     legend.append("rect")
       .attr("x", (d,i) => i*40)
-      .attr("y", -30)
+      .attr("y", -60)
       .attr("width", 40)
       .attr("height", 20)
       .style("fill", (d,i) => d);
     legend.append("text")
       .data(colorScale.quantiles())
       .attr("x", (d,i) => 30 + i * 40)
-      .attr("y", 0)
+      .attr("y", -30)
       .style("font-size", "10px")
       .text(d => d.toFixed(2)+"℃");
-      
+
     // plot the heat map
     const barWidth = w / (dataset.monthlyVariance.length / 12);
+    const barHeight = h / 12;
     const bars = svg.selectAll("rect")
       .data(dataset.monthlyVariance)
       .enter()
@@ -121,17 +122,13 @@ document.addEventListener('DOMContentLoaded', () => {
       .attr("data-month", d => d.month-1)
       .attr("data-temp", d => baseTemp + d.variance)
       .attr("x", (d,i) => barWidth * Math.floor(i/12))
-      .attr("y", d => yScale(new Date(1970, d.month-1, 1)))
+      .attr("y", d => yScale(d.month-1))
       .attr("width", barWidth)
-      .attr("height", h/12)
+      .attr("height", barHeight)
       .style("fill", d => colorScale(baseTemp + d.variance));
 
       //tooltip
       bars.on("mouseover", function(d) {
-        const monthNames = [
-          "January", "February", "March", "April", "May", "June",
-          "July", "August", "September", "October", "November", "December"
-        ];
         const xPos = parseFloat(d3.select(this).attr("x")) + 50;
         const yPos = parseFloat(d3.select(this).attr("y")) + 40;
         d3.select("#tooltip")
