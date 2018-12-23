@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
       "#F2CE2C", "#F06E1D", "#E61717", "#3C2EA8", "#7A2EA1"
     ];
     const baseTemp = dataset.baseTemperature;
-    const min = d3.min(dataset.monthlyVariance.map(d => d.variance));
+    const minV = d3.min(dataset.monthlyVariance.map(d => d.variance));
     const maxV = d3.max(dataset.monthlyVariance.map(d => d.variance));
     const colorScale = d3.scaleQuantile()
       .domain([baseTemp + minV, baseTemp, baseTemp + maxV])
