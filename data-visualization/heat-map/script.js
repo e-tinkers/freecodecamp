@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
       .range(colors);
 
     // x axis
-    const years = dataset.monthlyVariance.map(d => new Date(d.year}, 0, 1));
+    const years = dataset.monthlyVariance.map(d => new Date(d.year, 0, 1));
     const xMin = d3.min(years);
     const xMax = d3.max(years);
     const xScale = d3.scaleTime().domain([xMin, xMax]).range([0, w]);
