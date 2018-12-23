@@ -2,19 +2,7 @@
   box-sizing: border-box;
 }
 .bar-chart {
-  max-width: 1040px;
-  margin: 50px auto;
   position:relative;
-}
-#title {
-  font-size: 28px;
-}
-#description {
-  font-size: 24px;
-}
-header {
-  margin: auto;
-  display:none;
 }
 #tooltip {
   position:absolute;
@@ -29,12 +17,6 @@ header {
 }
 #tooltip p {
   margin: 10px;
-}
-.bar {
-  fill: #00ccff;
-}
-.bar:hover {
-  fill: #ffcc00;
 }
 .bar-chart g text{
   font-size:10px;

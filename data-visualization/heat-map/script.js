@@ -3,7 +3,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   // Canvas size
-  const margin = {top: 100, left: 100, right: 20, bottom: 80};
+  const margin = {top: 100, left: 100, right: 20, bottom: 60};
   const w = 1132 - margin.left - margin.right;
   const h = 650 - margin.top - margin.bottom;
   const url = "https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/global-temperature.json";
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
       .text("Month");
     svg.append("text")
       .attr("x", w/2)
-      .attr("y", h + 80)
+      .attr("y", h + 40)
       .style("font-size", "18px")
       .text("Year");
 
