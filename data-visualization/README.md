@@ -13,3 +13,7 @@ All the charts are built with d3.js data driven document library based on freeCo
 - [Visualize data with a Heat Map](https://github.com/e-tinkers/freecodecamp/tree/master/data-visualization/heat-map)
 
   [![](https://e-tinkers.github.io/freecodecamp/data-visualization/images/heat-map.png)](https://e-tinkers.github.io/freecodecamp/data-visualization/heat-map/index.html)
+
+- [Visualize data with a Choropleth Map](https://github.com/e-tinkers/freecodecamp/tree/master/data-visualization/choropleth-map)
+
+  [![](https://e-tinkers.github.io/freecodecamp/data-visualization/images/choropleth-map.png)](https://e-tinkers.github.io/freecodecamp/data-visualization/choropleth-map/index.html)
