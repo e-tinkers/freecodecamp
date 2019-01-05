@@ -1,0 +1,35 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 20px;
+}
+#title, #description, #dataSelection {
+  text-align: center;
+  display: block;
+}
+#description {
+  font-size: 20px;
+  font-weight: normal;
+}
+
+.chart {
+  position:relative;
+}
+#tooltip {
+  position:absolute;
+  background: #ffffe0;
+  color: black;
+  width: 180px;
+  border-radius: 3px;
+  box-shadow: 2px 2px 6px rgba(40, 40, 40, 0.5);
+  z-index: 9999;
+}
+#tooltip.hidden {
+  display:none;
+}
+#tooltip p {
+  margin: 0px;
+  padding: 8px;
+  font-size: 12px;
+}
