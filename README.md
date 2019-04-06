@@ -34,4 +34,4 @@ This repository contains my version of coding solutions of [freeCodeCamp](https:
     - URL Shortener Microservice
     - Exercise Tracker
     - File Metadata Microservice
-- **Information Security and Quality Assurance**
+- **[Information Security and Quality Assurance](https://github.com/e-tinkers/freecodecamp/tree/master/information-security-and-quality-assurance) (node.js, mocha, helmet)**
