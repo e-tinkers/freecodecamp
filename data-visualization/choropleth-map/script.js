@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
   req.send();
   req.onload = function() {
     let topoData = JSON.parse(req.responseText);
-
+    
     // get Education data
     req = new XMLHttpRequest();
     req.open('GET', eduURL, true);

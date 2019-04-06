@@ -1,0 +1,33 @@
+{
+  "name": "metric-imperial",
+  "version": "1.0.0",
+  "description": "This is freeCodeCamp Information and Advanced Nodejs - Metric-Imperial converter challenge",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "mocha tests/"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "cors": "^2.8.5",
+    "body-parser": "^1.18.3",
+    "chai": "^4.2.0",
+    "mongodb": "^3.1.11",
+    "chai-http": "^4.2.1",
+    "mocha": "^5.2.0",
+    "zombie": "^6.1.4",
+    "helmet": "^3.16.0"
+  },
+  "engines": {
+    "node": "10.15.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/e-tinkers/freecodecamp/tree/master/infomation-security-and-quality-assurance/metric-imperial"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "henry cheung",
+  "license": "MIT"
+}
