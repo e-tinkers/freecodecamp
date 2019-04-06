@@ -35,3 +35,9 @@ This repository contains my version of coding solutions of [freeCodeCamp](https:
     - Exercise Tracker
     - File Metadata Microservice
 - **[Information Security and Quality Assurance](https://github.com/e-tinkers/freecodecamp/tree/master/information-security-and-quality-assurance) (node.js, mocha, helmet)**
+    - Metric-Imperial Converter
+    - Issue Tracker
+    - Personal Library
+    - Stock Price Checker
+    - Anonymous Message Board
+    - 
